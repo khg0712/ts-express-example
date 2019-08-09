@@ -1,10 +1,9 @@
 import express from 'express';
 import { crawl } from './crawl';
 
-crawl();
-
 const app = express();
-app.get('/', (req, res) => {
+app.get('/crawl', (req, res) => {
+  crawl(res.send.bind(res));
 });
 
 app.listen(8080, () => {

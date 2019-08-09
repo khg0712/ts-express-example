@@ -4,7 +4,12 @@ import { extract } from './extract';
 
 const app = express();
 app.get('/crawl', (req, res) => {
-  crawl(res.send.bind(res), extract);
+  crawl()
+    .then(
+      (html: string) => res.send(
+        extract(html).join(', '),
+      ),
+    );
 });
 
 app.listen(8080, () => {
